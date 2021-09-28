@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 if [[ ! -d $(which docker) && $(docker --version) ]]; then
   log_info "Installing Docker ..."
     curl https://get.docker.com/ | sh
