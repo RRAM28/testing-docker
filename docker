@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ ! -x "$(command -v docker)" ]; then
+if [ ! -x "$(convert -version)" ]; then
   echo "Installing Docker"
 else
   echo "Docker installed skipping"
