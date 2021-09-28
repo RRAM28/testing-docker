@@ -5,3 +5,9 @@ if [ ! -x "$(convert -version)" ]; then
 else
   echo "Docker installed skipping"
 fi
+
+if [ ! "$(convert -version)" &> /dev/null ]; then
+  echo "Installing Imagemagic"
+else
+  echo "Imagemagic installed skipping"
+fi
