@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ ! -d $(which docker) ]]; then
+if [ ! -x "$(command -v docker)" ]; then
   log_info "Installing Docker ..."
     curl https://get.docker.com/ | sh
 fi
