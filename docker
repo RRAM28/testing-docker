@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 if [ ! -x "$(command -v docker)" ]; then
-  log_info "Installing Docker ..."
-    curl https://get.docker.com/ | sh
+  echo "Installing Docker"
+else
+  echo "Docker installed skipping"
 fi
