@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 
-if [ ! -x "$(convert -version)" ]; then
-  echo "Installing Docker"
-else
-  echo "Docker installed skipping"
-fi
-
 if [ ! "$(convert -version)" &> /dev/null ]; then
   echo "Installing Imagemagic"
 else
   echo "Imagemagic installed skipping"
+fi
+
+if [ ! -x "$(command -v docker)" ]; then
+  log_info "Installing Docker ..."
+    curl https://get.docker.com/ | sh
+  log_info "Avoid typing sudo ..."
+    source ~/.bashrc
+    sudo usermod -aG docker ${USER}
+    # sudo usermod -aG docker shotengai
 fi
