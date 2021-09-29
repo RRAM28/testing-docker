@@ -1,16 +1,5 @@
 #!/usr/bin/env bash
 
-read -p "Do you want to update your package repositories before proceeding ? " -n 1 -r
-echo  #adding new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-   sudo apt update
-   sudo apt upgrade -y
-   sudo apt autoremove -y
-fi
-
-
-
 #  Check to see if Xclip is installed if not install it
 if [ $(dpkg-query -W -f='${Status}' xclip 2>/dev/null | grep -c "ok installed") -eq 0 ];
 then
