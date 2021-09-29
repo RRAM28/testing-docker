@@ -1,39 +1,24 @@
 #!/usr/bin/env bash
 
-ruby_version="2.7.2"
-rails_version="6.0.2"
-bundler_version="2.2.15"
-
-if [[ ! -d "$HOME/.rbenv" ]]; then
-  log_info "Installing rbenv ..."
-    git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-
-    if ! grep -qs "rbenv init" ~/.bashrc; then
-      printf 'export PATH="$HOME/.rbenv/bin:$PATH"\n' >> ~/.bashrc
-      printf 'eval "$(rbenv init - --no-rehash)"\n' >> ~/.bashrc
-      source ~/.bashrc
-    fi
-
-    export PATH="$HOME/.rbenv/bin:$PATH"
-    eval "$(rbenv init -)"
+read -p "Do you want to update your package repositories before proceeding ? " -n 1 -r
+echo  #adding new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+   sudo apt update
+   sudo apt upgrade -y
+   sudo apt autoremove -y
 fi
 
-if [[ ! -d "$HOME/.rbenv/plugins/ruby-build" ]]; then
-  log_info "Installing ruby-build, to install Rubies ..."
-    git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+
+
+#  Check to see if Xclip is installed if not install it
+if [ $(dpkg-query -W -f='${Status}' xclip 2>/dev/null | grep -c "ok installed") -eq 0 ];
+then
+  echo 'xclip not installed .... installing now!'
+  sudo apt install xclip -y;
 fi
-
-log_info "Installing Ruby $ruby_version ..."
-  rbenv install "$ruby_version"
-
-log_info "Setting $ruby_version as global default Ruby ..."
-  rbenv global "$ruby_version"
-  rbenv rehash
-
-log_info "Installing Rails $rails_version ..."
-  gem install rails -v "$rails_version"
-
-log_info "Installing Bundler $bundler_version ..."
-  gem install bundler:"$bundler_version" --no-rdoc --no-ri
-  gem env home
-  rbenv rehash
+#  Add the aliases to the .bashrc
+echo 'updating bash profile'
+echo "#pbcopy & pbpaste aliases" >> ~/.bash_aliases
+echo "alias pbcopy='xclip -selection clipboard'" >> ~/.bash_aliases
+echo "alias pbpaste='xclip -selection clipboard -o'"  >> ~/.bash_aliases
