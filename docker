@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
 # generate ssh key for github
-# eval "$(ssh-agent -s)"
-# ssh-keygen -t rsa -C "admin@codeflakes.io"
+eval "$(ssh-agent -s)"
+keyPath="~/.ssh/id_rsa.pub"
+email="admin@codeflakes.io"
+myPassPhrase="iloveruby"
+rm $keyPath $keyPath.pub &> /dev/null
+ssh-keygen -t rsa -C "$email" -N "$myPassPhrase" -f "$keyPath"
+
 echo "All dependencies for Shotengaai were installed"
 echo "please copy the follow shh key on Github for CI Deployment"
 echo ""
 cat ~/.ssh/id_rsa.pub
-
