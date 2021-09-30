@@ -5,6 +5,6 @@
 # ssh-keygen -t rsa -C "admin@codeflakes.io"
 echo "All dependencies for Shotengaai were installed"
 echo "please copy the follow shh key on Github for CI Deployment"
-echo "==========================================================================================="
+echo ""
 cat ~/.ssh/id_rsa.pub
-echo "==========================================================================================="
+
