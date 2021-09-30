@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 
-#  Check to see if Xclip is installed if not install it
-if [ $(dpkg-query -W -f='${Status}' xclip 2>/dev/null | grep -c "ok installed") -eq 0 ];
-then
-  echo 'xclip not installed .... installing now!'
-  sudo apt install xclip -y;
-fi
-#  Add the aliases to the .bashrc
-echo 'updating bash profile'
-echo "#pbcopy & pbpaste aliases" >> ~/.bash_aliases
-echo "alias pbcopy='xclip -selection clipboard'" >> ~/.bash_aliases
-echo "alias pbpaste='xclip -selection clipboard -o'"  >> ~/.bash_aliases
+# generate ssh key for github
+# eval "$(ssh-agent -s)"
+# ssh-keygen -t rsa -C "admin@codeflakes.io"
+echo "All dependencies for Shotengaai were installed"
+echo "please copy the follow shh key on Github for CI Deployment"
+echo "==========================================================================================="
+cat ~/.ssh/id_rsa.pub
+echo "==========================================================================================="
